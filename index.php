@@ -84,13 +84,29 @@ echo $aluno;
 ###############################################################################################
 */
 
-//Fazendo Update de dados do banco de dados.
+/*
+###############################################################################################
+
+//Fazendo Update de dados no banco de dados. Feito na aula 66 e comentado na aula 67.
 
 $usuario = new Usuario();
 
 $usuario->loadById(6);
 
 $usuario->update("professor", "12345");
+
+echo $usuario;
+
+###############################################################################################
+*/
+
+//Deletando dados da tabela no banco de dados. Feito na aula 67.
+
+$usuario = new Usuario();
+
+$usuario->loadById(6);
+
+$usuario->delete();
 
 echo $usuario;
 

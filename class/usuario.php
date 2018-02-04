@@ -78,7 +78,7 @@ class Usuario{
 
 	public static function search($login){
 
-		$sql = new sql();
+		$sql = new Sql();
 
 		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
 
@@ -144,7 +144,7 @@ class Usuario{
 		$this->setDeslogin($login);
 		$this->setDessenha($password);
 
-		$sql = new sql();
+		$sql = new Sql();
 
 		$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID", array(
 
@@ -154,8 +154,22 @@ class Usuario{
 
 		));
 
+	}
 
+	public function delete(){
 
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+
+			':ID'=>$this->getIdusuario()
+
+		));
+
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
 	}
 
 	public function __construct($login = "", $password = ""){
